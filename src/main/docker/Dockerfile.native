@@ -7,11 +7,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/kube-native-java .
+# docker build -f src/main/docker/Dockerfile.native -t quarkus/people .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/kube-native-java
+# docker run -i --rm -p 8080:8080 quarkus/people
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.6

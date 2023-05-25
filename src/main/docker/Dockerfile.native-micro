@@ -10,11 +10,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/kube-native-java .
+# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/people .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/kube-native-java
+# docker run -i --rm -p 8080:8080 quarkus/people
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0
