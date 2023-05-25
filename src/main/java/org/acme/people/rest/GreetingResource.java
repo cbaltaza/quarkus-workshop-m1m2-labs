@@ -19,6 +19,6 @@ public class GreetingResource {
     @Produces(MediaType.TEXT_PLAIN)
     @NonBlocking
     public String hello() {
-        return "hello";
+        return "hello Java 17 --> quarkus 3.0.3.Final ";
     }
 }
