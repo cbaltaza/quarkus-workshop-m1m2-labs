@@ -81,15 +81,16 @@ public class PersonResource {
 	// TODO: Add lifecycle hook
 	@Transactional
 	void onStart(@Observes StartupEvent ev) {
-		for (int i = 0; i < 1000; i++) {
-			String name = CuteNameGenerator.generate();
-			LocalDate birth = LocalDate.now().plusWeeks(Math.round(Math.floor(Math.random() * 40 * 52 * -1)));
-			EyeColor color = EyeColor.values()[(int) (Math.floor(Math.random() * EyeColor.values().length))];
-			Person p = new Person();
-			p.birth = birth;
-			p.eyes = color;
-			p.name = name;
-			Person.persist(p);
-		}
+		
+//		for (int i = 0; i < 100; i++) {
+//			String name = CuteNameGenerator.generate();
+//			LocalDate birth = LocalDate.now().plusWeeks(Math.round(Math.floor(Math.random() * 40 * 52 * -1)));
+//			EyeColor color = EyeColor.values()[(int) (Math.floor(Math.random() * EyeColor.values().length))];
+//			Person p = new Person();
+//			p.birth = birth;
+//			p.eyes = color;
+//			p.name = name;
+//			Person.persist(p);
+//		}
 	}
 }
