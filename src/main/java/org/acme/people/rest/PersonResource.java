@@ -19,10 +19,13 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import org.jboss.logging.Logger;
 
 @Path("/person")
 @ApplicationScoped
 public class PersonResource {
+
+    private static final Logger LOG = Logger.getLogger(PersonResource.class);
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -31,9 +34,11 @@ public class PersonResource {
 	}
 
 	@GET
-	@Path("/buscar/{id}")
+	@Path("/get/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Person> getById(@PathParam("id") Long id, @HeaderParam("token") String token) {
+		LOG.info("Datos de entrada: ".concat(id.toString()).concat(" token: ").concat(token));
+
 		return Person.findById(id);
 	}
 	// TODO: add basic queries
