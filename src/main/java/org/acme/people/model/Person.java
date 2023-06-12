@@ -20,6 +20,10 @@ import jakarta.persistence.Enumerated;
 	 */
 	@Entity
 	public class Person extends PanacheEntity {
+		
+	    // the person's name
+		private Long id;
+
 	    // the person's name
 	    public String name;
 

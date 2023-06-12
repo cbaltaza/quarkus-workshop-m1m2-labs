@@ -1,27 +1,24 @@
 package org.acme.people.rest;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import org.acme.people.model.DataTable;
+import org.acme.people.model.EyeColor;
+import org.acme.people.model.Person;
+
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Parameters;
+import io.quarkus.runtime.StartupEvent;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HeaderParam;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
-
-import org.acme.people.model.DataTable;
-import org.acme.people.model.EyeColor;
-import org.acme.people.model.Person;
-import org.acme.people.utils.CuteNameGenerator;
-
-import io.quarkus.panache.common.Parameters;
-import io.quarkus.runtime.StartupEvent;
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
 
 @Path("/person")
 @ApplicationScoped
@@ -33,6 +30,12 @@ public class PersonResource {
 		return Person.listAll();
 	}
 
+	@GET
+	@Path("/buscar/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Person> getById(@PathParam("id") Long id, @HeaderParam("token") String token) {
+		return Person.findById(id);
+	}
 	// TODO: add basic queries
 	@GET
 	@Path("/eyes/{color}")
@@ -44,7 +47,7 @@ public class PersonResource {
 	@GET
 	@Path("/birth/before/{year}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Person> getBeforeYear(@PathParam(value = "year") int year) {
+	public List<Person> getBeforeYear(@PathParam(value = "year") int year, @HeaderParam("token") String token ) {
 		return Person.getBeforeYear(year);
 	}
 
