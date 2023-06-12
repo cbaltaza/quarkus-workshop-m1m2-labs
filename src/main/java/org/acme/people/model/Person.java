@@ -40,6 +40,10 @@ import jakarta.persistence.Enumerated;
 	        return list("eyes", color);
 	    }
 
+	    public static List<Person> findById(Long id) {
+	        return find("id", id).firstResult();
+	    }
+	    
 	    public static List<Person> getBeforeYear(int year) {
 	        return Person.<Person>streamAll()
 	        .filter(p -> p.birth.getYear() <= year)
