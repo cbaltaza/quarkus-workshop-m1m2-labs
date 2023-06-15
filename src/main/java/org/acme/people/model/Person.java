@@ -8,11 +8,12 @@ package org.acme.people.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
 	/**
 	 * @author BalMen
@@ -41,7 +42,7 @@ import jakarta.persistence.Enumerated;
 	    }
 
 	    public static List<Person> findById(Long id) {
-	        return find("id", id).firstResult();
+	        return list("id", id);
 	    }
 	    
 	    public static List<Person> getBeforeYear(int year) {
