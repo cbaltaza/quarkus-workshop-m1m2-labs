@@ -3,8 +3,7 @@
  */
 package org.acme.people.model;
 
-
-	import java.time.LocalDate;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,39 +14,37 @@ import javax.persistence.Enumerated;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-	/**
-	 * @author BalMen
-	 *
-	 */
-	@Entity
-	public class Person extends PanacheEntity {
-		
-	    // the person's name
-		private Long id;
+/**
+ * @author BalMen
+ *
+ */
+@Entity
+public class Person extends PanacheEntity {
 
-	    // the person's name
-	    public String name;
+	// the person's name
+	private Long id;
 
-	    // the person's birthdate
-	    public LocalDate birth;
+	// the person's name
+	public String name;
 
-	    // the person's eye color
-	    @Enumerated(EnumType.STRING)
-	    @Column(length = 8)
-	    public EyeColor eyes;
+	// the person's birthdate
+	public LocalDate birth;
 
-	    // TODO: Add more queries
-	    public static List<Person> findByColor(EyeColor color) {
-	        return list("eyes", color);
-	    }
+	// the person's eye color
+	@Enumerated(EnumType.STRING)
+	@Column(length = 8)
+	public EyeColor eyes;
 
-	    public static List<Person> findById(Long id) {
-	        return list("id", id);
-	    }
-	    
-	    public static List<Person> getBeforeYear(int year) {
-	        return Person.<Person>streamAll()
-	        .filter(p -> p.birth.getYear() <= year)
-	        .collect(Collectors.toList());
-	    }
+	// TODO: Add more queries
+	public static List<Person> findByColor(EyeColor color) {
+		return list("eyes", color);
+	}
+
+	public static List<Person> findById(Long id) {
+		return list("id", id);
+	}
+
+	public static List<Person> getBeforeYear(int year) {
+		return Person.<Person>streamAll().filter(p -> p.birth.getYear() <= year).collect(Collectors.toList());
+	}
 }

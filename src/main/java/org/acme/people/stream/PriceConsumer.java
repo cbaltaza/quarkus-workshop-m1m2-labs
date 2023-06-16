@@ -12,6 +12,9 @@ import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 
@@ -21,6 +24,9 @@ import io.quarkus.runtime.StartupEvent;
 @ApplicationScoped
 public class PriceConsumer implements Runnable {
 
+    public static final Logger log = LoggerFactory.getLogger(PriceConsumer.class);
+
+    
     @Inject
     ConnectionFactory connectionFactory;
 

@@ -14,11 +14,16 @@ import javax.inject.Inject;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.quarkus.runtime.ShutdownEvent;
 import io.quarkus.runtime.StartupEvent;
 
 @ApplicationScoped
 public class NameGenerator implements Runnable {
+
+    public static final Logger log = LoggerFactory.getLogger(NameGenerator.class);
 
     @Inject
     ConnectionFactory connectionFactory;
@@ -37,7 +42,9 @@ public class NameGenerator implements Runnable {
     @Override
     public void run() {
         try (JMSContext context = connectionFactory.createContext(JMSContext.AUTO_ACKNOWLEDGE)) {
-            String numero = Integer.toString(random.nextInt(100));
+            String numero = Integer.toString(random.nextInt(1000));
+            log.info("Numero Generado ".concat(numero));
+            
 			context.createProducer().send(context.createQueue("prices"), numero);
         }
     }
